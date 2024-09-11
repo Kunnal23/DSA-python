@@ -9,7 +9,6 @@ temp3 = Node(30)
 temp1.next = temp2
 temp2.next = temp3
 head = temp1
-tail = temp3
 
 def printList(head):
     i = head
