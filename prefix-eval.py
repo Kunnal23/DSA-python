@@ -1,7 +1,7 @@
-def postfix(s):
+def prefix(s):
     stack = []
     
-    tokens = s.split()
+    tokens = reversed(s.split())
     
     for token in tokens:
         if token.isdigit(): 
@@ -11,15 +11,15 @@ def postfix(s):
             op1 = stack.pop()
             
             if token == '+':
-                stack.append(op1 + op2)
+                stack.append(op2 + op1)
             elif token == '-':
-                stack.append(op1 - op2)
+                stack.append(op2 - op1)
             elif token == '*':
-                stack.append(op1 * op2)
+                stack.append(op2 * op1)
             elif token == '/':
-                stack.append(int(op1 / op2)) 
+                stack.append(int(op2 / op1)) 
             elif token == '^':
-                stack.append(op1 ** op2)
+                stack.append(op2 ** op1)
     
     return stack[-1] 
-print(postfix("10 2 3 ^ ^"))  
+print(prefix(" + 10 / 6 3"))  

@@ -1,3 +1,6 @@
+def revStr(a):
+    return a[::-1]
+
 def prec(c):
     if c == '^':
         return 3
@@ -13,21 +16,23 @@ def isLeftAssociative(c):
         return False
     return True  
 
-def infix_to_postfix(s):
+def infix_to_prefix(s):
+    s = revStr(s)
     result = []
     stack = []
 
     for i in range(len(s)):
         c = s[i]
 
-        if ('a' <= c <= 'z') or ('A' <= c <= 'Z') or ('0' <= c <= '9'):
+        
+        if c.isalnum():
             result.append(c)
         
-        elif c == '(':
+        elif c == ')':
             stack.append(c)
         
-        elif c == ')':
-            while stack and stack[-1] != '(':
+        elif c == '(':
+            while stack and stack[-1] != ')':
                 result.append(stack.pop())
             stack.pop()  
         else:
@@ -35,12 +40,11 @@ def infix_to_postfix(s):
                 result.append(stack.pop())
             stack.append(c)
 
-
     while stack:
         result.append(stack.pop())
+    res = revStr(''.join(result))
+    print(res)
 
-    print(''.join(result))
 
-exp = "a+b*(c^d^e)^(f+g*h)-i"
-
-infix_to_postfix(exp)
+exp = "(x+y)*z"
+infix_to_prefix(exp)
