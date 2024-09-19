@@ -41,6 +41,9 @@ class MyQueue:
     
     def isEmpty(self):
         return (self.sz == 0)
+    
+    def isFull(self):
+        return (self.sz==self.cap)
 
 
 q = MyQueue(5)
@@ -53,3 +56,4 @@ q.enque(40)
 print(q.getFront())
 print(q.getRear())
 print(q.isEmpty())
+print(q.isFull())
